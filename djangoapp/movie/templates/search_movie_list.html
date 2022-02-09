@@ -1,0 +1,9 @@
+<div>
+    <p>Search with keywords "{{ search }}" and media type "{{ media_type }}" returned {{ hits|length }} results</p>
+
+    <br>
+    {% for hit in hits%}
+        <p><b>{{ hit.title }} ({{ hit.year }})</b>
+        <p><img src={{ hit.poster }} height="250"/>
+    {% endfor %}
+</div>

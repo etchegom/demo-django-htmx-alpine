@@ -1,0 +1,46 @@
+{% comment %} <form hx-post="{% url 'movie_search' %}" hx-target="#search-results">
+  {{ form.as_p }}
+  <input type="submit" value="Search movies" />
+</form> {% endcomment %}
+
+<form x-data="searchForm()" @submit.prevent="submitForm">
+  {{ form.as_p }}
+  <input type="submit" value="Search movie" />
+</form>
+
+<br>
+<div id="search-results"></div>
+
+<!-- API call on form submit -->
+<script>
+  function searchForm() {
+    return {
+      submitForm() {
+        let search = document.querySelector("#id_search").value;
+        let mediaType = document.querySelector("#id_media_type").value;
+
+        if (!search) return false;
+
+        htmx.ajax("POST", "http://localhost:8000/movie/search", {
+          values: { search, mediaType },
+          target: "#search-results",
+        });
+      },
+    };
+  }
+</script>
+
+<!-- CSRF -->
+<script>
+  document.body.addEventListener("htmx:configRequest", (event) => {
+    event.detail.headers["X-CSRFToken"] = "{{ csrf_token }}";
+  });
+</script>
+
+<!-- deps -->
+<script
+  type="text/javascript"
+  src="https://unpkg.com/alpinejs@3.2.1/dist/cdn.min.js"
+  defer
+></script>
+<script type="text/javascript" src="https://unpkg.com/htmx.org@1.4.1"></script>
