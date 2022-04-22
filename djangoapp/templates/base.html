@@ -1,0 +1,26 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Demo Django HTMX AlpineJS</title>
+        <script src="{% static 'htmx.min.js' %}" defer></script>
+        <script src="{% static 'js/htmx/debug.js' %}" defer></script>
+    </head>
+    <body>
+        <header class="page-header">
+            <div class="container">
+                <h1>
+                    <a href="/">Demo Django HTMX AlpineJS</a>
+                </h1>
+            </div>
+        </header>
+        <main class="container">
+            <div class="row">
+                <div class="col">
+                    {% block content %}{% endblock %}
+                </div>
+            </div>
+        </main>
+    </body>
+</html>

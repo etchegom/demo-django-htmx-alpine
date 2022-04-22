@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<form hx-post="{% url 'contact_form' %}" hx-swap="outerHTML">
+    {% csrf_token %}
+    <p class="subtitle">
+        Get in touch!
+    </p>
+    {{ contact_form }}
+    <input type="submit" value="Submit" />
+</form>
+{% endblock %}
