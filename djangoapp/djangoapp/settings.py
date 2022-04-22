@@ -40,8 +40,9 @@ INSTALLED_APPS = [
     "django_extensions",
     "django_htmx",
 ] + [
-    "movie",
     "contact",
+    "modal",
+    "movie",
 ]
 
 MIDDLEWARE = [
@@ -61,7 +62,6 @@ ROOT_URLCONF = "djangoapp.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        # "DIRS": ["templates"],
         "DIRS": ["templates", "movie/templates", "contact/templates"],
         "APP_DIRS": True,
         "OPTIONS": {
